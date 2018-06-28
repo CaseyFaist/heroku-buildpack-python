@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bashgit 
 
 . ${BUILDPACK_TEST_RUNNER_HOME}/lib/test_utils.sh
 
