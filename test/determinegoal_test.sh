@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 . ${BUILDPACK_TEST_RUNNER_HOME}/lib/test_utils.sh
 
 testDetermineBlankGoal() {
     
     echo "Calling determine-goal with ''..."
-    capture ${BUILDPACK_HOME}/bin/determine-goal <<< ""
+    capture ${BUILDPACK_HOME}/bin/determine-goal << ""
     assertContains "THIS IS PYTHON 2!" "`cat ${STD_OUT}`"
     assertContains "Unfortunately," "`cat ${STD_OUT}`"
     assertContains "Your options are" "`cat ${STD_OUT}`"
