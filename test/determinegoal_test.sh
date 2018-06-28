@@ -5,7 +5,7 @@
 testDetermineBlankGoal() {
     
     echo "Calling determine-goal with ''..."
-    capture ${BUILDPACK_HOME}/bin/determine-goal << ""
+    capture ${BUILDPACK_HOME}/bin/determine-goal <""
     assertContains "THIS IS PYTHON 2!" "`cat ${STD_OUT}`"
     assertContains "Unfortunately," "`cat ${STD_OUT}`"
     assertContains "Your options are" "`cat ${STD_OUT}`"
@@ -16,7 +16,7 @@ testDetermineBlankGoal() {
 testDetermineUpgradeGoal() {
     
     echo "Calling determine-goal with 'u'..."
-    capture ${BUILDPACK_HOME}/bin/determine-goal << "u"
+    capture ${BUILDPACK_HOME}/bin/determine-goal <"u"
     assertContains "THIS IS PYTHON 2!" "`cat ${STD_OUT}`"
     assertContains "Unfortunately," "`cat ${STD_OUT}`"
     assertContains "Your options are" "`cat ${STD_OUT}`"
@@ -28,7 +28,7 @@ testDetermineUpgradeGoal() {
 testDetermineDowngradeGoal() {
     
     echo "Calling determine-goal with 'd'..."
-    capture ${BUILDPACK_HOME}/bin/determine-goal << "d"
+    capture ${BUILDPACK_HOME}/bin/determine-goal <"d"
     assertContains "THIS IS PYTHON 2!" "`cat ${STD_OUT}`"
     assertContains "Unfortunately," "`cat ${STD_OUT}`"
     assertContains "Your options are" "`cat ${STD_OUT}`"
