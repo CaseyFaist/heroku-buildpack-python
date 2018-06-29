@@ -5,7 +5,7 @@ mkdir ${BUILDPACK_HOME}/determine
 
 testDetermineBlankGoal() {
     touch ${BUILDPACK_HOME}/determine/goal.txt
-    echo '\n\n\n' > ${BUILDPACK_HOME}/determine/goal.txt
+    echo $'\n\n\n' >| ${BUILDPACK_HOME}/determine/goal.txt
 
     capture ${BUILDPACK_HOME}/bin/determine-goal
 
@@ -18,7 +18,7 @@ testDetermineBlankGoal() {
 
 testDetermineUpgradeGoal() {
     touch ${BUILDPACK_HOME}/determine/goal.txt
-    echo $'u\n\n' > ${BUILDPACK_HOME}/determine/goal.txt
+    echo $'u\n\n' >| ${BUILDPACK_HOME}/determine/goal.txt
 
     capture ${BUILDPACK_HOME}/bin/determine-goal
 
@@ -33,7 +33,7 @@ testDetermineUpgradeGoal() {
 
 testDetermineDowngradeGoal() {
     touch ${BUILDPACK_HOME}/determine/goal.txt
-    echo $'d\n\n' > ${BUILDPACK_HOME}/determine/goal.txt
+    echo $'d\n\n' >| ${BUILDPACK_HOME}/determine/goal.txt
 
     capture ${BUILDPACK_HOME}/bin/determine-goal
 
@@ -47,7 +47,7 @@ testDetermineDowngradeGoal() {
 
 testDetermineInvalidResponse() {
     touch ${BUILDPACK_HOME}/determine/goal.txt
-    echo $'y\n\n' > ${BUILDPACK_HOME}/determine/goal.txt
+    echo $'y\n\n' >| ${BUILDPACK_HOME}/determine/goal.txt
 
     capture ${BUILDPACK_HOME}/bin/determine-goal
 
