@@ -5,8 +5,15 @@ echo "Unfortunately, it won't work on this stack (Heroku-18) as-is. "
 echo "Your options are to upgrade your app to Python, or use an older stack."
 echo "Would you like to upgrade your app [u] or downgrade your stack [d]? Just hit enter to leave this doc."
 
-# goal=""
-read goal
+
+if [[ -r "${BUILDPACK_HOME}/determine/goal.txt" ]]; then
+    echo "got it "
+    goal=`cat ${BUILDPACK_HOME}/determine/goal.txt`
+    echo $goal
+else
+    read goal
+    echo "dangit"
+fi
 
 if [[ $goal != "" ]]; then
     if [[ $goal == "u" ]]; then
@@ -15,7 +22,8 @@ if [[ $goal != "" ]]; then
     elif [[ $goal == "d" ]]; then
         # This will describe how to downgrade
         echo "Downgrade!!!!!!!!!"
-    fi
+    else
+        echo "Goodbye"
 else
     echo "Goodbye"
 fi
