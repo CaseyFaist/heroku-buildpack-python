@@ -16,14 +16,16 @@ else
 fi
 
 if [[ "$goal" != "" ]]; then
-    if [[ "$goal" == "$u" ]]; then
+    if [[ "$goal" = *"u"* ]]; then
         # This will describe how to update
         echo "Upgrade!!!!!!!!!"
-    elif [[ "$goal" == "$d" ]]; then
+    elif [[ "$goal" = *"d"* ]]; then
         # This will describe how to downgrade
         echo "Downgrade!!!!!!!!!"
     else
         echo "Goodbye"
+        echo $goal
+        echo "$"
     fi
 else
     echo "Goodbye"
