@@ -1,31 +1,65 @@
 #!/usr/bin/env bash
 
-echo "THIS IS PYTHON 2!"
-echo "Unfortunately, it won't work on this stack (Heroku-18) as-is. "
-echo "Your options are to upgrade your app to Python, or use an older stack."
-echo "Would you like to upgrade your app [u] or downgrade your stack [d]? Just hit enter to leave this doc."
+echo "
+
+   Unfortunately, it won't work on this stack (Heroku-18) as-is.
+   Your options are to upgrade your app to Python, or downgrade to an older stack.
+
+   To downgrade a current app's stack, from your codebase's directory run:
+   heroku stack:set heroku-16
+
+   This will rebuild your app the next time you commit; however if there's no 
+   current app changes, you can push an empty commit to trigger a rebuild:
+   git commit --allow-empty -m \"Upgrading to heroku-16\"
+
+   (We can do all of this for you automatically if you enter [d].)
+
+   You can also specify the stack explicitly when creating a new app:
+   heroku create --remote heroku --stack heroku-16
+
+   For more information, check out this article about upgrading and downgrading
+   your Heroku stack:
+   https://devcenter.heroku.com/articles/upgrading-to-the-latest-stack
+
+   -----------------------------------------------------------------------------
+   While it's relatively easy to spin up an app on an older stack, we are 
+   constantly improving our stacks and release new stacks every two years, so
+   this solution should ultimately be considered temporary.
+   To check the currently supported stacks and their end of life dates, check out
+   https://devcenter.heroku.com/articles/stack#migrating-to-a-new-stack
+
+    Enter [u] to learn more about the steps involved to upgrade your codebase
+    to python 3.7 [u]
+
+    Enter [d] to automatically downgrade your stack to Heroku-16 and rebuild [d]
+
+    Press enter to do nothing."
 
 
+# To be able to test the interactive response, look for a test response in file
 if [[ -r "${BUILDPACK_HOME}/determine/goal.txt" ]]; then
-    echo "got it "
+    file="yes"
     goal="$(cat ${BUILDPACK_HOME}/determine/goal.txt)"
     echo "$goal"
 else
+    # If no test file exists, get response from user.
     read goal
-    echo "dangit"
 fi
 
+# Now that response is set, process.
 if [[ "$goal" != "" ]]; then
     if [[ "$goal" = *"u"* ]]; then
         # This will describe how to update
         echo "Upgrade!!!!!!!!!"
     elif [[ "$goal" = *"d"* ]]; then
-        # This will describe how to downgrade
-        echo "Downgrade!!!!!!!!!"
+        # This will automattically run the commands to downgrade the stack
+        echo "Downgrading to Heroku-16"
+        if [[ "$file" != "yes" ]]; then
+            echo "`heroku stack:set heroku-16`"
+            echo "`git commit --allow-empty -m \"Upgrading to heroku-16\"`"
+        fi
     else
         echo "Goodbye"
-        echo $goal
-        echo "$"
     fi
 else
     echo "Goodbye"

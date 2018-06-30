@@ -9,10 +9,8 @@ testDetermineBlankGoal() {
 
     capture ${BUILDPACK_HOME}/bin/determine-goal
 
-    assertContains "THIS IS PYTHON 2!" "`cat ${STD_OUT}`"
-    assertContains "got it" "`cat ${STD_OUT}`"
+    assertContains "Unfortunately," "`cat ${STD_OUT}`"
     assertContains "Goodbye" "`cat ${STD_OUT}`"
-    assertNotContains "dangit" "`cat ${STD_OUT}`"
     assertEquals 0 ${rtrn}
 }
 
@@ -22,12 +20,10 @@ testDetermineUpgradeGoal() {
 
     capture ${BUILDPACK_HOME}/bin/determine-goal
 
-    assertContains "THIS IS PYTHON 2!" "`cat ${STD_OUT}`"
-    assertContains "got it" "`cat ${STD_OUT}`"
+    assertContains "Unfortunately," "`cat ${STD_OUT}`"
     assertContains "Upgrade" "`cat ${STD_OUT}`"
     
     assertNotContains "Goodbye" "`cat ${STD_OUT}`"
-    assertNotContains "dangit" "`cat ${STD_OUT}`"
     assertEquals 0 ${rtrn}
 }
 
@@ -37,10 +33,9 @@ testDetermineDowngradeGoal() {
 
     capture ${BUILDPACK_HOME}/bin/determine-goal
 
-    assertContains "THIS IS PYTHON 2!" "`cat ${STD_OUT}`"
-    assertContains "got it" "`cat ${STD_OUT}`"
-    assertContains "Downgrade" "`cat ${STD_OUT}`"
-    assertNotContains "dangit" "`cat ${STD_OUT}`"
+    assertContains "Unfortunately," "`cat ${STD_OUT}`"
+    assertContains "Downgrading to Heroku-16" "`cat ${STD_OUT}`"
+    assertNotContains "Stack set. Next release on " "`cat ${STD_OUT}`"
     assertNotContains "Goodbye" "`cat ${STD_OUT}`"
     assertEquals 0 ${rtrn}
 }
@@ -51,9 +46,7 @@ testDetermineInvalidResponse() {
 
     capture ${BUILDPACK_HOME}/bin/determine-goal
 
-    assertContains "THIS IS PYTHON 2!" "`cat ${STD_OUT}`"
-    assertContains "got it" "`cat ${STD_OUT}`"
+    assertContains "Unfortunately," "`cat ${STD_OUT}`"
     assertContains "Goodbye" "`cat ${STD_OUT}`"
-    assertNotContains "dangit" "`cat ${STD_OUT}`"
     assertEquals 0 ${rtrn}
 }
