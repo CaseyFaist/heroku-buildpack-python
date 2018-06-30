@@ -8,11 +8,11 @@ PYTHON_VERSION=$(cat runtime.txt)
 VENDORED_PYTHON="${VENDOR_URL}/runtimes/$PYTHON_VERSION.tar.gz"
 
 if [[ $PYTHON_VERSION =~ ^python-2 ]]; then
-  if [[ "$PYTHON_VERSION" != "$LATEST_2" ]]; then
-    puts-warn "The latest version of Python 2 is $LATEST_2 (you are using $PYTHON_VERSION, which is unsupported)."
-    puts-warn "We recommend upgrading by specifying the latest version ($LATEST_2)."
+    puts-warn "The latest version of Python is $LATEST_3 (you are using $PYTHON_VERSION, which is unsupported)."
+    puts-warn "We recommend upgrading by specifying the latest version ($LATEST_3)."
     echo "       Learn More: https://devcenter.heroku.com/articles/python-runtimes"
-  fi
+    source bin/determine-goal
+
 else
   if [[ "$PYTHON_VERSION" != "$LATEST_3" ]]; then
     puts-warn "The latest version of Python 3 is $LATEST_3 (you are using $PYTHON_VERSION, which is unsupported)."
@@ -45,6 +45,8 @@ if [ ! "$SKIP_INSTALL" ]; then
     mcount "version.python.$PYTHON_VERSION"
 
     if ! curl "${VENDORED_PYTHON}" -s | tar zxv -C .heroku/python &> /dev/null; then
+
+      # change this to determine-goal
       puts-warn "Requested runtime ($PYTHON_VERSION) is not available for this stack ($STACK)."
       puts-warn "Aborting.  More info: https://devcenter.heroku.com/articles/python-support"
       exit 1

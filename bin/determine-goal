@@ -28,12 +28,15 @@ echo "
    To check the currently supported stacks and their end of life dates, check out
    https://devcenter.heroku.com/articles/stack#migrating-to-a-new-stack
 
+   Learn more about Heroku supported runtimes:
+   https://devcenter.heroku.com/articles/python-runtimes
+
     Enter [u] to learn more about the steps involved to upgrade your codebase
     to python 3.7 [u]
 
     Enter [d] to automatically downgrade your stack to Heroku-16 and rebuild [d]
 
-    Press enter to do nothing."
+    Press enter to do nothing. []"
 
 
 # To be able to test the interactive response, look for a test response in file
