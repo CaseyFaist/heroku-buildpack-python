@@ -50,7 +50,45 @@ fi
 if [[ "$goal" != "" ]]; then
     if [[ "$goal" = *"u"* ]]; then
         # This will describe how to update
-        echo "Upgrade!!!!!!!!!"
+        echo "
+           -----------------------------------------------------------------------------
+           Many resources exist to help outline the process to update code to Python 3.6
+           and check dependencies for compatibility.
+
+           Check out the PSF's official guide on porting to Python 3.7 here:
+           https://docs.python.org/3/howto/pyporting.html
+
+           For a quick begginer's look at what to consider when upgrading an app, 
+           checkout this gist:
+           https://gist.github.com/CaseyFaist/7ecd4fc3ed1dafaef907df8bc2f49ef8
+
+           One important step from this doc is to add test coverage to your project - 
+           this will help you catch port errors quickly and easily. PyPI recommends
+           the coverage package for this - https://pypi.org/project/coverage
+
+           There are also some handy utilities that can help automate code porting.
+
+           - Futurize automatically updates your code to python 3.7 compatible
+             conventions while importing future modules to preserve python 2.7
+             compatibility - this won't be perfect, but can do a lot of the bulk updates
+             for you.
+             http://python-future.org/automatic_conversion.html
+           - Another option is the compatibility support library six. It can report
+             whether your code is viable in 2 or 3 independently, provides reference
+             lists for data types and accessing object methods, among other things.
+             http://six.readthedocs.io/
+           - Pylint provides a handy \"--py3k\" flag useful to get a sense of what will
+             need updating, as well as catching errors from automatic porting tools:
+             https://www.pylint.org/#install
+           - caniusepython3 is a library that will scan your requirements.txt file and
+             report whether your packages are or have newer Python 3 compatible versions.
+             https://pypi.org/project/caniusepython3/
+           - To take advantage of type annotations without having to manually add type
+             annotations, check out MonkeyType. This open source project will capture
+             types at runtime and use them to generate and write annotations into
+             your codebase.
+             https://github.com/Instagram/MonkeyType
+        "
     elif [[ "$goal" = *"d"* ]]; then
         # This will automattically run the commands to downgrade the stack
         echo "Downgrading to Heroku-16"
