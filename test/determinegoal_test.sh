@@ -21,7 +21,7 @@ testDetermineUpgradeGoal() {
     capture ${BUILDPACK_HOME}/bin/determine-goal
 
     assertContains "Unfortunately," "`cat ${STD_OUT}`"
-    assertContains "Upgrade" "`cat ${STD_OUT}`"
+    assertContains "Happy upgrading!" "`cat ${STD_OUT}`"
     
     assertNotContains "Goodbye" "`cat ${STD_OUT}`"
     assertEquals 0 ${rtrn}

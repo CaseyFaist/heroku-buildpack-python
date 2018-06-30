@@ -88,6 +88,8 @@ if [[ "$goal" != "" ]]; then
              types at runtime and use them to generate and write annotations into
              your codebase.
              https://github.com/Instagram/MonkeyType
+
+             Happy upgrading!
         "
     elif [[ "$goal" = *"d"* ]]; then
         # This will automattically run the commands to downgrade the stack
