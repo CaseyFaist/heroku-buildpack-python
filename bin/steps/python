@@ -90,7 +90,7 @@ if [ ! "$SKIP_INSTALL" ]; then
 
     mcount "version.python.$PYTHON_VERSION"
 
-    if ! curl "${VENDORED_PYTHON}" -s | tar zxv -C .heroku/python &> /dev/null; then
+    if ! curl "${VENDORED_PYTHON}" -s | tar zxv -C .heroku/python; then
       puts-warn "Requested runtime ($PYTHON_VERSION) is not available for this stack ($STACK)."
       puts-warn "Aborting.  More info: https://devcenter.heroku.com/articles/python-support"
       exit 1
@@ -108,7 +108,7 @@ fi
 # https://github.com/pypa/get-pip
 GETPIP="https://lang-python.s3.amazonaws.com/etc/get-pip.py"
 
-if ! curl -s "${GETPIP}" -o "$ROOT_DIR/get-pip.py" &> /dev/null; then
+if ! curl -s "${GETPIP}" -o "$ROOT_DIR/get-pip.py"; then
     mcount "failure.python.get-pip"
     echo "Failed to pull down get-pip"
     exit 1
@@ -123,8 +123,8 @@ if [ "$FRESH_PYTHON" ] || [[ ! $(pip --version) == *$PIP_UPDATE* ]]; then
   rm -fr /app/.heroku/python/lib/python*/site-packages/pip-*
   rm -fr /app/.heroku/python/lib/python*/site-packages/setuptools-*
 
-  /app/.heroku/python/bin/python "$ROOT_DIR/get-pip.py" pip=="$PIP_UPDATE" &> /dev/null
-  /app/.heroku/python/bin/pip install "$ROOT_DIR/vendor/setuptools-39.0.1-py2.py3-none-any.whl" &> /dev/null
+  /app/.heroku/python/bin/python "$ROOT_DIR/get-pip.py" pip=="$PIP_UPDATE"
+  /app/.heroku/python/bin/pip install "$ROOT_DIR/vendor/setuptools-39.0.1-py2.py3-none-any.whl"
 fi
 
 set -e
