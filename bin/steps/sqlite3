@@ -13,8 +13,8 @@ sqlite3_version() {
     echo "Stack is $STACK"
     echo "Sqlite version is $SQLITE3_VERSION"
   else
-    # SQLITE3_VERSION="3.22.0-1ubuntu0.2"
-    SQLITE3_VERSION=${SQLITE3_VERSION:-$(dpkg -s libsqlite3-0 | grep Version | sed 's/Version: //')}
+    SQLITE3_VERSION="3.22.0-1ubuntu0.2"
+    # SQLITE3_VERSION=${SQLITE3_VERSION:-$(dpkg -s libsqlite3-0 | grep Version | sed 's/Version: //')}
     echo "Stack is $STACK"
     echo "Sqlite version is $SQLITE3_VERSION"
   fi
