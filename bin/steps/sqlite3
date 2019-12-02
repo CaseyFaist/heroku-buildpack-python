@@ -4,6 +4,7 @@
 source "$BIN_DIR/utils"
 
 sqlite3_version() {
+  apt-cache policy libsqlite3-0
   if [ "$STACK" == "cedar-14" ]; then
     SQLITE3_VERSION="3.8.2-1ubuntu2.2"
     echo "Stack is $STACK"
